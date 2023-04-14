@@ -285,7 +285,14 @@
 		row-gap: 3px;
 		width: 400px;
 		align-items: center;
-  }
+	}
+	/* Media breakpoint for small screens */
+	@media (max-width: 600px) {
+		.content, .row {
+			width: 350px;
+		}
+	}
+
 	.prose {
 		max-width: fit-content;
 	}
