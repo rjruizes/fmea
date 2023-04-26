@@ -4,10 +4,10 @@
   import "../app.css";
 </script>
 
-<div class="app">
+<div class="app flex h-full flex-col bg-zinc-200">
 	<!-- <Header /> -->
 
-	<main>
+	<main class="flex justify-center">
 		<slot />
 	</main>
 

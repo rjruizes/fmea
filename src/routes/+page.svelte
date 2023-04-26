@@ -1,16 +1,7 @@
 <script>
   import {
-    Listbox,
-    ListboxButton,
-    ListboxOptions,
-    ListboxOption,
-    Dialog,
-    DialogOverlay,
     DialogTitle,
-    DialogDescription,
   } from "@rgossiaux/svelte-headlessui";
-	import FaQuestionCircle from 'svelte-icons/fa/FaQuestionCircle.svelte'
-	import FaInfoCircle from 'svelte-icons/fa/FaInfoCircle.svelte'
 	import Modal from './Modal.svelte'
 	import { formData, rows } from "$lib/store.js";
 	import SodItem from "$lib/components/SodItem.svelte";
@@ -127,163 +118,168 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<div class="flex flex-col items-center">
-	<section class="prose text-sm grow">
-		<h2 class="mt-6 mb-8">Forensic Science FMEA</h2>
+<div class="w-full max-w-5xl flex">
+	<div class="bg-white w-full flex flex-col items-center">
+		<section class="prose text-sm grow">
+			<h2 class=" pt-24 mb-8">Forensic Science FMEA</h2>
 
-		<form class="content">
-			<label class="label" for="riskType">Risk to be evaluated</label>
-			<select name="riskType" id="riskType" class="select select-bordered select-sm" bind:value={$formData.riskType} >
-				<option value="nonConformance" selected>Non-Conformance</option>
-				<option value="areaOfConcern">Area of Concern</option>
-			</select>
-			<label class="label" for="qaManager">QA Manager</label>
-			<input id="qaManager" type="text" class="input input-bordered input-sm" bind:value={$formData.qaManager} />
-			<label class="label" for="teamMembers">Team Members</label>
-			<input id="teamMembers" type="text" class="input input-bordered input-sm" bind:value={$formData.teamMembers} />
+			<form class="content">
+				<label class="label" for="riskType">Risk to be evaluated</label>
+				<select name="riskType" id="riskType" class="select select-bordered select-sm" bind:value={$formData.riskType} >
+					<option value="nonConformance" selected>Non-Conformance</option>
+					<option value="areaOfConcern">Area of Concern</option>
+				</select>
+				<label class="label" for="qaManager">QA Manager</label>
+				<input id="qaManager" type="text" class="input input-bordered input-sm" bind:value={$formData.qaManager} />
+				<label class="label" for="teamMembers">Team Members</label>
+				<input id="teamMembers" type="text" class="input input-bordered input-sm" bind:value={$formData.teamMembers} />
 
-			<label class="label" for="preparer">Prepared by</label>
-			<input id="preparer" type="text" class="input input-bordered input-sm" bind:value={$formData.preparer} />
-			<label class="label" for="carNum">CAR No.</label>
-			<input id="carNum" type="text" class="input input-bordered input-sm" bind:value={$formData.carNum} />
-			<label class="label" for="fmeaNum">FMEA No.</label>
-			<input id="fmeaNum" type="text" class="input input-bordered input-sm" bind:value={$formData.fmeaNum} />
-			<label class="label" for="date">Date</label>
-			<input id="date" type="text" class="input input-bordered input-sm" bind:value={$formData.date} />
+				<label class="label" for="preparer">Prepared by</label>
+				<input id="preparer" type="text" class="input input-bordered input-sm" bind:value={$formData.preparer} />
+				<label class="label" for="carNum">CAR No.</label>
+				<input id="carNum" type="text" class="input input-bordered input-sm" bind:value={$formData.carNum} />
+				<label class="label" for="fmeaNum">FMEA No.</label>
+				<input id="fmeaNum" type="text" class="input input-bordered input-sm" bind:value={$formData.fmeaNum} />
+				<label class="label" for="date">Date</label>
+				<input id="date" type="text" class="input input-bordered input-sm" bind:value={$formData.date} />
 
-			{#each $rows as $item}
-			<div class="divider col-span-2"></div>
-			<div class="row">
-				<label class="label" for="process">Process or Activity</label>
-				<input id="process" type="text" class="input input-bordered input-sm" bind:value={$item.process} />
-				<label class="label" for="failure">Failure or Potential Failure</label>
-				<input id="failure" type="text" class="input input-bordered input-sm" bind:value={$item.failure} />
-				<label class="label" for="effect">Potential Effect of Failure</label>
-				<input id="effect" type="text" class="input input-bordered input-sm" bind:value={$item.effect} />
-				<label class="label" for="severity">
-					<div class="flex flex-col">
-						<div>
-							Severity
+				{#each $rows as $item}
+				<div class="divider col-span-2"></div>
+				<div class="row">
+					<label class="label" for="process">Process or Activity</label>
+					<input id="process" type="text" class="input input-bordered input-sm" bind:value={$item.process} />
+					<label class="label" for="failure">Failure or Potential Failure</label>
+					<input id="failure" type="text" class="input input-bordered input-sm" bind:value={$item.failure} />
+					<label class="label" for="effect">Potential Effect of Failure</label>
+					<input id="effect" type="text" class="input input-bordered input-sm" bind:value={$item.effect} />
+					<label class="label" for="severity">
+						<div class="flex flex-col">
+							<div>
+								Severity
+							</div>
+							<!-- svelte-ignore a11y-click-events-have-key-events -->
+							<div on:click={() => severityModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
+								More Info
+							</div>
 						</div>
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<div on:click={() => severityModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
-							More Info
-						</div>
-					</div>
-					
-					<Modal isOpen={severityModalIsOpen}>
-            <div>
-              <div class="mt-3 sm:mt-5">
-                <DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Severity of Condition</DialogTitle>
-								<div class="-space-y-px rounded-md bg-white col-span-2 mt-2">
-									{#each severityItems as item (item.id)}
-										<SodItem label={item.label} color={item.color} description={item.description} />
-									{/each}
-								</div>
-              </div>
-            </div>
-            <div class="mt-5 sm:mt-6">
-              <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click={() => { severityModalIsOpen = false}}>Close</button>
-            </div>
-					</Modal>
-				</label>
-
-				<SelectBox bind:selectedId={$item.severity} items={severityItems} />
-
-				<!-- <select name="severity" id="severity" class="select select-bordered select-sm" bind:value={$item.severity}>
-					<option value=5>5</option>
-					<option value=4>4. Critical</option>
-					<option value=3>3</option>
-					<option value=2>2</option>
-					<option value=1>1</option>
-				</select> -->
-				<label class="label" for="cause">Likely cause of Failure</label>
-				<input id="cause" type="text" class="input input-bordered input-sm" bind:value={$item.cause} />
-				<label class="label" for="occurrence">
-					<div class="flex flex-col">
-						<div>
-							Occurrence
-						</div>
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<div on:click={() => occurenceModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
-							More Info
-						</div>
-					</div>
-
-					<Modal isOpen={occurenceModalIsOpen}>
-            <div>
-              <div class="mt-3 sm:mt-5">
-                <DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Occurrence of Failure</DialogTitle>
-								<div class="-space-y-px rounded-md bg-white col-span-2 mt-2">				
-									{#each occurenceItems as item (item.id)}
-										<SodItem label={item.label} color={item.color} description={item.description} />
-									{/each}
-								</div>
-              </div>
-            </div>
-            <div class="mt-5 sm:mt-6">
-              <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click={() => { occurenceModalIsOpen = false}}>Close</button>
-            </div>
-					</Modal>
-				</label>
-				<SelectBox bind:selectedId={$item.occurrence} items={occurenceItems} />
-
-				<label class="label" for="controls">Current Controls</label>
-				<input id="controls" type="text" class="input input-bordered input-sm" bind:value={$item.controls} />
-				<label class="label" for="detection">
-					<div class="flex flex-col">
-						<div>
-							Detection
-						</div>
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<div on:click={() => detectionModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
-							More Info
-						</div>
-
-						<Modal isOpen={detectionModalIsOpen}>
+						
+						<Modal isOpen={severityModalIsOpen}>
 							<div>
 								<div class="mt-3 sm:mt-5">
-									<DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Probability of Detection</DialogTitle>
-									<div class="-space-y-px rounded-md bg-white col-span-2 mt-2">				
-										{#each detectionItems as item (item.id)}
+									<DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Severity of Condition</DialogTitle>
+									<div class="-space-y-px rounded-md bg-white col-span-2 mt-2">
+										{#each severityItems as item (item.id)}
 											<SodItem label={item.label} color={item.color} description={item.description} />
 										{/each}
 									</div>
 								</div>
 							</div>
 							<div class="mt-5 sm:mt-6">
-								<button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click={() => { detectionModalIsOpen = false}}>Close</button>
+								<button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click={() => { severityModalIsOpen = false}}>Close</button>
 							</div>
 						</Modal>
-					</div>
+					</label>
 
-				</label>
-				<SelectBox bind:selectedId={$item.detection} items={detectionItems} />
+					<SelectBox bind:selectedId={$item.severity} items={severityItems} />
 
-				<div class="divider col-span-2"></div>
-				
-				<p class="label">RPN Score</p>
-				<p class="label">{calculateRPN($item.severity, $item.occurrence, $item.detection)}</p>
-				<label class="label" for="carpar">CAR/PAR?</label>
-				<input id="carpar" type="text" class="input input-bordered input-sm" bind:value={$item.carpar} />
-				<h2 class="col-span-2 mt-20">Risk Assessment</h2>
-				<RiskAssessmentBlurb severity={$item.severity} occurrence={$item.occurrence} detection={$item.detection} />
-			</div>
-			{/each}
+					<!-- <select name="severity" id="severity" class="select select-bordered select-sm" bind:value={$item.severity}>
+						<option value=5>5</option>
+						<option value=4>4. Critical</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select> -->
+					<label class="label" for="cause">Likely cause of Failure</label>
+					<input id="cause" type="text" class="input input-bordered input-sm" bind:value={$item.cause} />
+					<label class="label" for="occurrence">
+						<div class="flex flex-col">
+							<div>
+								Occurrence
+							</div>
+							<!-- svelte-ignore a11y-click-events-have-key-events -->
+							<div on:click={() => occurenceModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
+								More Info
+							</div>
+						</div>
 
-		</form>
+						<Modal isOpen={occurenceModalIsOpen}>
+							<div>
+								<div class="mt-3 sm:mt-5">
+									<DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Occurrence of Failure</DialogTitle>
+									<div class="-space-y-px rounded-md bg-white col-span-2 mt-2">				
+										{#each occurenceItems as item (item.id)}
+											<SodItem label={item.label} color={item.color} description={item.description} />
+										{/each}
+									</div>
+								</div>
+							</div>
+							<div class="mt-5 sm:mt-6">
+								<button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click={() => { occurenceModalIsOpen = false}}>Close</button>
+							</div>
+						</Modal>
+					</label>
+					<SelectBox bind:selectedId={$item.occurrence} items={occurenceItems} />
 
-		<!-- <Counter /> -->
-	</section>
+					<label class="label" for="controls">Current Controls</label>
+					<input id="controls" type="text" class="input input-bordered input-sm" bind:value={$item.controls} />
+					<label class="label" for="detection">
+						<div class="flex flex-col">
+							<div>
+								Detection
+							</div>
+							<!-- svelte-ignore a11y-click-events-have-key-events -->
+							<div on:click={() => detectionModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
+								More Info
+							</div>
+
+							<Modal isOpen={detectionModalIsOpen}>
+								<div>
+									<div class="mt-3 sm:mt-5">
+										<DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Probability of Detection</DialogTitle>
+										<div class="-space-y-px rounded-md bg-white col-span-2 mt-2">				
+											{#each detectionItems as item (item.id)}
+												<SodItem label={item.label} color={item.color} description={item.description} />
+											{/each}
+										</div>
+									</div>
+								</div>
+								<div class="mt-5 sm:mt-6">
+									<button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click={() => { detectionModalIsOpen = false}}>Close</button>
+								</div>
+							</Modal>
+						</div>
+
+					</label>
+					<SelectBox bind:selectedId={$item.detection} items={detectionItems} />
+
+					<div class="divider col-span-2"></div>
+
+					<h2 class="col-span-2 mt-10">Risk Assessment</h2>
+					<p class="label">RPN Score</p>
+					<p class="label">{calculateRPN($item.severity, $item.occurrence, $item.detection)}</p>
+					<label class="label" for="carpar">CAR/PAR?</label>
+					<select name="carpar" id="carpar" class="select select-bordered select-sm" bind:value={$item.carpar} >
+						<option value="true">Yes</option>
+						<option value="false">No</option>
+					</select>
+					<RiskAssessmentBlurb severity={$item.severity} occurrence={$item.occurrence} detection={$item.detection} />
+				</div>
+				{/each}
+
+			</form>
+
+			<!-- <Counter /> -->
+		</section>
+	</div>
 </div>
 
 <style>
   .content, .row {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 36% 64%;
     grid-column-gap: 5px;
 		row-gap: 3px;
-		width: 400px;
+		width: 600px;
 		align-items: center;
 	}
 	/* Media breakpoint for small screens */

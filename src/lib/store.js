@@ -1,23 +1,23 @@
 import { writable } from 'svelte/store';
 
 export const formData = writable({
-  riskType: "nonConformance",
+  riskType: "areaOfConcern",
   qaManager: "John Doe",
   teamMembers: "John Doe, Sarah Johnson",
   preparer: "John Doe",
   carNum: "1234567890",
   fmeaNum: "0987654321",
-  date: "03/14/2023",
+  date: "04/19/2023",
 })
 
 export const rows = writable([{
-  process: "Spelunking",
-  failure: "Falling",
-  effect: "Injury",
+  process: "Adhere label to evidence",
+  failure: "Label on wrong evidence",
+  effect: "Results do not correspond to evidence",
   severity: 4,
-  cause: "Slipping",
+  cause: "Multiple tasks completed at once",
   occurrence: 2,
-  controls: "Harnesses",
+  controls: "Examiner reviews evidence at receipt",
   detection: 1,
   rpn: "",
   carpar: ""
