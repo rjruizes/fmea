@@ -10,3 +10,16 @@ body {
 .label, input, select, p, span {
   color: rgba(0,0,0,0.9);
 }
+
+/* Apply input class styles to date-time-field class */
+.date-time-field input {
+  color: rgba(0,0,0,0.9) !important;
+  width: 100% !important;
+  border-radius: var(--rounded-btn, 0.5rem) !important;
+  padding: 0 0.75rem !important;
+  height: 2rem !important;
+  border-width: 1px !important;
+  font-size: 0.875rem !important;
+  line-height: 2rem;
+}
+

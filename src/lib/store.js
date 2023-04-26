@@ -7,7 +7,7 @@ export const formData = writable({
   preparer: "John Doe",
   carNum: "1234567890",
   fmeaNum: "0987654321",
-  date: "04/19/2023",
+  date: new Date(),
 })
 
 export const rows = writable([{

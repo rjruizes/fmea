@@ -2,6 +2,7 @@
   import {
     DialogTitle,
   } from "@rgossiaux/svelte-headlessui";
+	import { DateInput } from 'date-picker-svelte'
 	import Modal from './Modal.svelte'
 	import { formData, rows } from "$lib/store.js";
 	import SodItem from "$lib/components/SodItem.svelte";
@@ -141,7 +142,7 @@
 				<label class="label" for="fmeaNum">FMEA No.</label>
 				<input id="fmeaNum" type="text" class="input input-bordered input-sm" bind:value={$formData.fmeaNum} />
 				<label class="label" for="date">Date</label>
-				<input id="date" type="text" class="input input-bordered input-sm" bind:value={$formData.date} />
+				<DateInput format="MM/dd/yyyy" closeOnSelection={true} bind:value={$formData.date} />
 
 				{#each $rows as $item}
 				<div class="divider col-span-2"></div>
