@@ -13,60 +13,30 @@
   $: selectedItem = items.find(p => p.id === selectedId);
 </script>
 
-<Listbox value={selectedId} on:change={(e) => {
-    selectedItem = items.find(p => p.id === e.detail)
-    selectedId = selectedItem.id
-  }}>
-  <ListboxButton class="select select-bordered select-sm w-full">
-    <div>
-      <span
-        class={`inline-block h-3 w-3 flex-shrink-0 ${selectedItem?.color}`}
-        aria-hidden="true"
-      />
-      <span>{selectedItem?.label || ""}</span>
-    </div>
-  </ListboxButton>
-  <ListboxOptions>
-    {#each items as item (item.id)}
-      <ListboxOption value={item.id}>
+<div class="relative not-prose">
+  <Listbox value={selectedId} on:change={(e) => {
+      selectedItem = items.find(p => p.id === e.detail)
+      selectedId = selectedItem.id
+    }}>
+    <ListboxButton class="select select-bordered select-sm w-full">
+      <div>
         <span
-          class={`inline-block h-3 w-3 flex-shrink-0 ${item.color}`}
+          class={`inline-block h-3 w-3 flex-shrink-0 ${selectedItem?.color}`}
           aria-hidden="true"
         />
-        {item.label}
-      </ListboxOption>
-    {/each}
-  </ListboxOptions>
-</Listbox>
-
-<!-- <Listbox as="div" v-model="selected">
-  <ListboxLabel class="block text-sm font-medium leading-6 text-gray-900">Assigned to</ListboxLabel>
-  <div class="relative mt-2">
-    <ListboxButton class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
-      <span class="inline-flex w-full truncate">
-        <span class="truncate">{{ selection.name }}</span>
-        <span class="ml-2 truncate text-gray-500">{{ selected.username }}</span>
-      </span>
-      <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-        <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-      </span>
+        <span>{selectedItem?.label || ""}</span>
+      </div>
     </ListboxButton>
-
-    <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-      <ListboxOptions class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-        <ListboxOption as="template" v-for="person in people" :key="person.username" :value="person" v-slot="{ active, selected }">
-          <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-9']">
-            <div class="flex">
-              <span :class="[selected ? 'font-semibold' : 'font-normal', 'truncate']">{{ person.name }}</span>
-              <span :class="[active ? 'text-indigo-200' : 'text-gray-500', 'ml-2 truncate']">{{ person.username }}</span>
-            </div>
-
-            <span v-if="selected" :class="[active ? 'text-white' : 'text-indigo-600', 'absolute inset-y-0 right-0 flex items-center pr-4']">
-              <CheckIcon class="h-5 w-5" aria-hidden="true" />
-            </span>
-          </li>
+    <ListboxOptions class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+      {#each items as item (item.id)}
+        <ListboxOption value={item.id} class={({ active, selected }) => `pl-6 p-1 relative cursor-default select-none pr-9 ${selected ? ' bg-slate-200/60 font-bold' : ''} ${active ? ' bg-blue-100/80' : ''}`}>
+          <span
+            class={`inline-block h-3 w-3 flex-shrink-0 ${item.color}`}
+            aria-hidden="true"
+          />
+          {item.label}
         </ListboxOption>
-      </ListboxOptions>
-    </transition>
-  </div>
-</Listbox> -->
+      {/each}
+    </ListboxOptions>
+  </Listbox>
+</div>
