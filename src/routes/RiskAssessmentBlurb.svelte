@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { calculateRPN } from "./util";
-  export let severity: number
-  export let occurrence: number
-  export let detection: number
+  export let severity: number|null
+  export let occurrence: number|null
+  export let detection: number|null
 
   const cases = [
     { color: "bg-green-500", label: "Negligible risk of failure negatively impacting lab operations. No action necessary. For non-conforming work document action taken in template." },
@@ -12,7 +12,7 @@
     { color: "bg-transparent", label: "" }
   ]
 
-  function calculateRiskAssessment(severity:number, occurrence:number, detection:number) {
+  function calculateRiskAssessment(severity:number|null, occurrence:number|null, detection:number|null) {
     if (!severity) return
     const rpn = calculateRPN(severity, occurrence, detection)
     const sev = severity
@@ -42,6 +42,6 @@
       class={`inline-block h-3 w-3 flex-shrink-0 ${selectedCase?.color}`}
       aria-hidden="true"
     />
-    {selectedCase?.label}
+    {selectedCase?.label || ""}
   </p>
 </div>

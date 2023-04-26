@@ -1,14 +1,16 @@
-<script>
+<script lang="ts">
   import {
     DialogTitle,
   } from "@rgossiaux/svelte-headlessui";
 	import { DateInput } from 'date-picker-svelte'
+	
 	import Modal from './Modal.svelte'
-	import { formData, rows } from "$lib/store.js";
+	import { formData, rows } from "$lib/store";
 	import SodItem from "$lib/components/SodItem.svelte";
 	import SelectBox from "./SelectBox.svelte";
 	import { calculateRPN } from "./util";
 	import RiskAssessmentBlurb from "./RiskAssessmentBlurb.svelte";
+	import FormDemoToggler from "$lib/components/FormDemoToggler.svelte";
 
 	const severityItems = [
 		{
@@ -120,7 +122,8 @@
 </svelte:head>
 
 <div class="w-full max-w-5xl flex">
-	<div class="bg-white w-full flex flex-col items-center">
+	<div class="bg-white w-full flex flex-col items-center relative">
+		<FormDemoToggler />
 		<section class="prose text-sm grow">
 			<h2 class=" pt-24 mb-8">Forensic Science FMEA</h2>
 

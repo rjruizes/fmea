@@ -10,7 +10,7 @@
 
   export let items;
   export let selectedId;
-  let selectedItem = items.find(p => p.id === selectedId);
+  $: selectedItem = items.find(p => p.id === selectedId);
 </script>
 
 <Listbox value={selectedId} on:change={(e) => {
@@ -20,10 +20,10 @@
   <ListboxButton class="select select-bordered select-sm w-full">
     <div>
       <span
-        class={`inline-block h-3 w-3 flex-shrink-0 ${selectedItem.color}`}
+        class={`inline-block h-3 w-3 flex-shrink-0 ${selectedItem?.color}`}
         aria-hidden="true"
       />
-      <span>{selectedItem.label}</span>
+      <span>{selectedItem?.label || ""}</span>
     </div>
   </ListboxButton>
   <ListboxOptions>
