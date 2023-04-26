@@ -17,10 +17,10 @@
     const rpn = calculateRPN(severity, occurrence, detection)
     const sev = severity
     if (rpn !== "") {
-      if (rpn < 10 && sev < 5) {
+      if (rpn < 10 && sev <= 3) {
         return cases[0]
       }
-      if (rpn <= 14 && rpn >= 10 && sev <= 4) {
+      if (rpn <= 14 && rpn >= 8 && sev <= 4) {
         return cases[1]
       }
       if (rpn <= 29 && rpn > 14) {
