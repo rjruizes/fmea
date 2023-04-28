@@ -10,11 +10,12 @@
 
   export let items;
   export let selectedId;
+  export let disabled;
   $: selectedItem = items.find(p => p.id === selectedId);
 </script>
 
 <div class="relative not-prose">
-  <Listbox value={selectedId} on:change={(e) => {
+  <Listbox value={selectedId} disabled={disabled} on:change={(e) => {
       selectedItem = items.find(p => p.id === e.detail)
       selectedId = selectedItem.id
     }}>

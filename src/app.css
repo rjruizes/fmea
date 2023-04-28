@@ -22,4 +22,32 @@ body {
   font-size: 0.875rem !important;
   line-height: 2rem;
 }
+/* Apply input:disabled class styles to date-time-field class */
+.date-time-field input:disabled {
+  opacity: 1 !important;
+  cursor: not-allowed;
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--b2, var(--b1)) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+  --tw-text-opacity: 0.2;
+}
 
+.content, .row {
+  display: grid;
+  grid-template-columns: 36% 64%;
+  grid-column-gap: 5px;
+  row-gap: 3px;
+  width: 600px;
+  align-items: center;
+}
+/* Media breakpoint for small screens */
+@media (max-width: 600px) {
+  .content, .row {
+    width: 350px;
+  }
+}
+
+.prose {
+  max-width: fit-content;
+}
