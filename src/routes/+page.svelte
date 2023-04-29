@@ -43,7 +43,7 @@
 	<FormData disabled={nonSodItemsDisabled} />
 
 	{#each $rows as $item}
-		<ActivityRow item={$item} disabled={nonSodItemsDisabled} />
+		<ActivityRow bind:item={$item} disabled={nonSodItemsDisabled} />
 	{/each}
 
 	<div class="col-span-2 flex justify-center mt-6">
