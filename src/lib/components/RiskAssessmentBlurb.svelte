@@ -6,7 +6,7 @@
 
   const cases = [
     { color: "bg-green-500", label: "Negligible risk of failure negatively impacting lab operations. No action necessary. For non-conforming work document action taken in template." },
-    { color: "bg-yellow-500", label: "Minor to moderate risk of failure negatively impacting lab operations and work product. Correction required. Document action in template. Consider opening CAR/PAR, if none exist." },
+    { color: "bg-yellow-500", label: "Minor to moderate risk of failure negatively impacting lab operations and work product. Document any action taken in template." },
     { color: "bg-red-500", label: "High risk of failure negatively impacting operations and work product. Action required to reduce RPN <14. CAR or PAR needed if none exists. Complete template and attach to CAR/PAR" },
     { color: "bg-purple-500", label: "Critical risk of failure negatively impacting operations and work product. Immediate action required. Discontinue operation or process until mitigated to RPN <14. Complete template and attach to CAR/PAR." },
     { color: "bg-transparent", label: "" }
