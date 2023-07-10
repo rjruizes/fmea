@@ -6,6 +6,7 @@
 	import Button from "./Button.svelte";
 	import type { ActivityRowObj } from "$lib/store";
 	import { severityItems, occurenceItems, detectionItems } from "$lib/sodData";
+	import XCloseButton from "./XCloseButton.svelte";
 
 
   export let item: ActivityRowObj
@@ -38,11 +39,22 @@
     
     <Modal isOpen={severityModalIsOpen}>
       <div>
+        <XCloseButton onclick={() => { severityModalIsOpen = false}} />
         <div class="mt-3 sm:mt-5">
           <DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Severity of Condition</DialogTitle>
           <div class="-space-y-px rounded-md bg-white col-span-2 mt-2">
-            {#each severityItems as item (item.id)}
-              <SodItem label={item.label} color={item.color} description={item.description} />
+            {#each severityItems as sevItem (sevItem.id)}
+              <SodItem
+                onclick={() => {
+                  item.severity = sevItem.id;
+                  severityModalIsOpen = false;
+                }}
+                disabled={sodItemsDisabled}
+                label={sevItem.label}
+                color={sevItem.color}
+                isSelected={sevItem.id === item.severity}
+                description={sevItem.description}
+              />
             {/each}
           </div>
         </div>
@@ -77,11 +89,22 @@
 
     <Modal isOpen={occurrenceModalIsOpen}>
       <div>
+        <XCloseButton onclick={() => { occurrenceModalIsOpen = false}} />
         <div class="mt-3 sm:mt-5">
           <DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Occurrence of Failure</DialogTitle>
           <div class="-space-y-px rounded-md bg-white col-span-2 mt-2">				
-            {#each occurenceItems as item (item.id)}
-              <SodItem label={item.label} color={item.color} description={item.description} />
+            {#each occurenceItems as occItem (occItem.id)}
+              <SodItem
+                onclick={() => {
+                  item.occurrence = occItem.id;
+                  occurrenceModalIsOpen = false;
+                }}
+                disabled={sodItemsDisabled}
+                label={occItem.label}
+                color={occItem.color}
+                isSelected={occItem.id === item.occurrence}
+                description={occItem.description}
+              />
             {/each}
           </div>
         </div>
@@ -107,11 +130,22 @@
 
       <Modal isOpen={detectionModalIsOpen}>
         <div>
+          <XCloseButton onclick={() => { detectionModalIsOpen = false}} />
           <div class="mt-3 sm:mt-5">
             <DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Probability of Detection</DialogTitle>
             <div class="-space-y-px rounded-md bg-white col-span-2 mt-2">				
-              {#each detectionItems as item (item.id)}
-                <SodItem label={item.label} color={item.color} description={item.description} />
+              {#each detectionItems as detItem (detItem.id)}
+                <SodItem
+                  onclick={() => {
+                    item.severity = detItem.id;
+                    detectionModalIsOpen = false;
+                  }}
+                  disabled={sodItemsDisabled}
+                  label={detItem.label}
+                  color={detItem.color}
+                  isSelected={detItem.id === item.detection}
+                  description={detItem.description}
+                />
               {/each}
             </div>
           </div>

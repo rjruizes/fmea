@@ -1,9 +1,12 @@
 <script lang="ts">
+  export let onclick: () => void;
+  export let disabled: boolean;
   export let label: string;
   export let color: string;
   export let description: string;
+  export let isSelected: boolean;
 </script>
-<div class="relative flex border p-4">
+<button disabled={disabled} on:click={onclick} class={`w-full relative flex border p-4 text-left focus:ring focus-visible:ring focus-visible:outline-none hover:bg-blue-100/40 ${isSelected ? "bg-blue-100/40 border-blue-500 z-10" : ""}`}>
   <span class="ml-3 flex flex-col">
     <span class="block text-sm font-bold">
       <span
@@ -14,4 +17,4 @@
     </span>
     <p class="text-sm">{description}</p>
   </span>
-</div>
+</button>
