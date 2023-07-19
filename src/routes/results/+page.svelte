@@ -3,6 +3,7 @@
 	import { currentSubmission as submission, submissionCount, type Submission } from "$lib/store";
 	import Button from '$lib/components/Button.svelte';
 	import AssessmentAndAction from '$lib/components/AssessmentAndAction.svelte';
+	import ExportBtn from '$lib/components/ExportBtn.svelte';
 
 	if($submissionCount === 0) {
 		// goto("/", { replaceState: true })
@@ -39,7 +40,8 @@
 	</div>
 	<div class="flex flex-col items-center w-full space-y-2">
 		<Button class="max-w-xs" on:click={rescore} disabled={isRescoreDisabled} >Score Again</Button>
-		<Button class="max-w-xs bg-gray-600 hover:bg-gray-500" on:click={goToExport} >Export</Button>
+		<Button class="max-w-xs bg-gray-600 hover:bg-gray-500" on:click={goToExport} >Review</Button>
+		<ExportBtn />
 	</div>
 {:else}
 {$submission}

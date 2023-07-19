@@ -43,6 +43,8 @@
 		"@rgossiaux/svelte-headlessui": "^1.0.2",
 		"@tailwindcss/line-clamp": "^0.4.4",
 		"daisyui": "^2.51.3",
+		"jspdf": "^2.5.1",
+		"jspdf-autotable": "^3.5.31",
 		"svelte-icons": "^2.1.0"
 	}
 }

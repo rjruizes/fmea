@@ -26,7 +26,6 @@ export type ActivityRowObj = {
 // Define type for rows
 type Rows = Writable<ActivityRowObj[]>
 
-
 export const rows:Rows = writable([{
   process: "",
   failure: "",
@@ -60,6 +59,9 @@ type SubmissionDict = Writable<{
 }>
 export const submissionCount = writable(0)
 export const submissions: SubmissionDict = writable({})
+export const submissionsList = derived(submissions, ($submissions) => {
+  return $submissions ? Object.entries($submissions).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([key, value]) => value) : [];
+})
 export const currentSubmission = derived([submissions, submissionCount], ([$submissions, $submissionCount]) => {
   return $submissions[$submissionCount - 1]
 })

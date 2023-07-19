@@ -2,14 +2,14 @@
 	import SelectBox from "./SelectBox.svelte";
 	import type { ActivityRowObj } from "$lib/store";
 	import { severityItems, occurenceItems, detectionItems } from "$lib/sodData";
-
+  import s from "./strings";
 
   export let item: ActivityRowObj
   export let disabled: boolean = false
 </script>
 
 <hr class="col-span-2">
-<h2 class="col-span-2 mt-0">Rescore</h2>
+<h2 class="col-span-2 mt-0">{s["rescore"]}</h2>
 <div class="row">
   <label class="label" for="severity">
     <div class="flex flex-col">

@@ -1,0 +1,30 @@
+const strings = {
+  "risk.to.be.evaluated": "Risk to be evaluated",
+  "area.of.concern": "Area of Concern",
+  "non.conformance": "Non-Conformance",
+  "qa.manager": "QA Manager",
+  "team.members": "Team Members",
+  "prepared.by": "Prepared by",
+  "car.num": "CAR No.",
+  "fmea.num": "FMEA No.",
+  "date": "Date",
+
+  "process": "Process or Activity",
+  "failure": "Failure or Potential Failure",
+  "effect": "Potential Effect of Failure",
+  "severity": "Severity",
+  "cause": "Likely cause of Failure",
+  "occurrence": "Occurrence",
+  "controls": "Current Controls",
+  "detection": "Detection",
+  "rpn": "RPN",
+  "carpar": "CAR/PAR?",
+  "action.taken": "Action Taken",
+
+  "risk.assessment": "Risk Assessment",
+  "rpn.score": "RPN Score",
+  "rpn.description": "RPN Description",
+  "corrective.actions": "Corrective Actions",
+  "rescore": "Rescore",
+}
+export default strings

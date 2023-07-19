@@ -1,6 +1,5 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
-	import Header from './Header.svelte';
 	import FormDemoToggler from "$lib/components/FormDemoToggler.svelte";
 	import './styles.css';
   import "../app.css";
@@ -35,8 +34,6 @@
 <svelte:window on:popstate={popstate}/>
 
 <div class="app flex min-h-screen h-full flex-col bg-zinc-200">
-	<!-- <Header /> -->
-
 	<main class="flex justify-center">
 		<div class="w-full max-w-5xl flex">
 			<div class="bg-white min-h-screen h-full w-full flex flex-col items-center relative">
