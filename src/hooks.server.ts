@@ -4,6 +4,10 @@ import { ADMIN_LOGIN } from "$env/static/private";
 export const handle: Handle = async ({ event, resolve }) => {
     const url = new URL(event.request.url);
     const auth = event.request.headers.get("Authorization");
+
+    if (process.env["npm_lifecycle_event"] === "build") {
+        return resolve(event);
+    }
     
     if (auth !== `Basic ${Buffer.from(ADMIN_LOGIN).toString('base64')}`) {
         return new Response("Not authorized", {
