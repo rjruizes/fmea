@@ -65,7 +65,7 @@
 	}
 </script>
 
-<div class="absolute right-0 top-0 cursor-pointer">
+<div class="absolute right-2 top-2 cursor-pointer">
   {#if nextAction === "fill"}
     <button on:click={toggleStore} class="text-zinc-500/30 hover:text-zinc-500/60 w-11 p-3">
       <FaPencilAlt class="inline-block flex-shrink-0" />
