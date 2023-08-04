@@ -5,9 +5,13 @@
 	import Button from "./Button.svelte";
 	import s from './strings';
 	import { calculateRiskAssessment } from '$lib/calculateRiskAssessment';
+	import { Arial } from '$lib/fonts/Arial';
 
   function exportPdf() {
     const doc = new jsPDF()
+    doc.addFileToVFS('Arial-Regular.ttf', Arial)
+    doc.addFont('Arial-Regular.ttf', 'arial', 'normal')
+    doc.setFont('arial', 'normal');
     const FIRST_COL_WIDTH = 55
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(12);
@@ -19,6 +23,10 @@
       startY: finalY,
       columnStyles: {
         0: {cellWidth: FIRST_COL_WIDTH},
+      },
+      styles: {
+        font: 'arial',
+        fontStyle: 'normal',
       },
       body: [
         [s['risk.to.be.evaluated'], $formData.riskType === 'nonConformance' ? s['non.conformance'] : s['area.of.concern']],
@@ -39,6 +47,10 @@
       startY: finalY + 10,
       columnStyles: {
         0: {cellWidth: FIRST_COL_WIDTH},
+      },
+      styles: {
+        font: 'arial',
+        fontStyle: 'normal',
       },
       body: [
         [s['process'], String(firstSubmission.process)],
@@ -61,6 +73,10 @@
       columnStyles: {
         0: {cellWidth: FIRST_COL_WIDTH},
       },
+      styles: {
+        font: 'arial',
+        fontStyle: 'normal',
+      },
       body: [
         [s['rpn.score'], String(firstSubmission.rpn)],
         [s["rpn.description"], calculateRiskAssessment(firstSubmission.rpn, firstSubmission.severity).label],
@@ -75,6 +91,10 @@
       startY: finalY + 20,
       columnStyles: {
         0: {cellWidth: FIRST_COL_WIDTH},
+      },
+      styles: {
+        font: 'arial',
+        fontStyle: 'normal',
       },
       body: [
         [s['action.taken'], firstSubmission.actionTaken],
@@ -93,6 +113,10 @@
         columnStyles: {
           0: {cellWidth: FIRST_COL_WIDTH},
         },
+        styles: {
+          font: 'arial',
+          fontStyle: 'normal',
+        },
         body: [
           [s['severity'], String(submission.severity)],
           [s['occurrence'], String(submission.occurrence)],
@@ -108,6 +132,10 @@
         columnStyles: {
           0: {cellWidth: FIRST_COL_WIDTH},
         },
+        styles: {
+          font: 'arial',
+          fontStyle: 'normal',
+        },
         body: [
           [s['rpn.score'], String(submission.rpn)],
           [s["rpn.description"], calculateRiskAssessment(submission.rpn, submission.severity).label],
@@ -121,6 +149,10 @@
         startY: finalY + 20,
         columnStyles: {
           0: {cellWidth: FIRST_COL_WIDTH},
+        },
+        styles: {
+          font: 'arial',
+          fontStyle: 'normal',
         },
         body: [
           [s['action.taken'], submission.actionTaken],

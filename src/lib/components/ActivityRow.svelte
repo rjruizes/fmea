@@ -137,7 +137,7 @@
               {#each detectionItems as detItem (detItem.id)}
                 <SodItem
                   onclick={() => {
-                    item.severity = detItem.id;
+                    item.detection = detItem.id;
                     detectionModalIsOpen = false;
                   }}
                   disabled={sodItemsDisabled}
