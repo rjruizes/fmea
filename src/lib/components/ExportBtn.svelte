@@ -31,7 +31,6 @@
       body: [
         [s['risk.to.be.evaluated'], $formData.riskType === 'nonConformance' ? s['non.conformance'] : s['area.of.concern']],
         [s['qa.manager'], $formData.qaManager],
-        [s['team.members'], $formData.teamMembers],
         [s['prepared.by'], $formData.preparer],
         [s['car.num'], $formData.carNum],
         [s['fmea.num'], $formData.fmeaNum],

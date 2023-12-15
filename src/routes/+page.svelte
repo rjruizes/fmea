@@ -21,7 +21,8 @@
 				detection: $rows[0].detection!,
 				rpn,
 				carpar: $rows[0].carpar,
-				actionTaken: $rows[0].actionTaken,
+				actionsTaken: [""],
+				addlComments: '',
 			}
 			return results_
 		})

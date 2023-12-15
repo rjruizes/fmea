@@ -3,9 +3,8 @@ const strings = {
   "area.of.concern": "Area of Concern",
   "non.conformance": "Non-Conformance",
   "qa.manager": "QA Manager",
-  "team.members": "Team Members",
   "prepared.by": "Prepared by",
-  "car.num": "CAR No.",
+  "car.num": "Incident No.",
   "fmea.num": "FMEA No.",
   "date": "Date",
 
@@ -20,11 +19,12 @@ const strings = {
   "rpn": "RPN",
   "carpar": "CAR/PAR?",
   "action.taken": "Action Taken",
+  "addl.comments": "Additional Comments",
 
   "risk.assessment": "Risk Assessment",
   "rpn.score": "RPN Score",
   "rpn.description": "RPN Description",
-  "corrective.actions": "Corrective Actions",
+  "corrective.actions": "Corrective Action(s)",
   "rescore": "Rescore",
 }
 export default strings

@@ -10,10 +10,12 @@
   $: restOfSubmissions = $submissionsList.slice(1);
 </script>
 
-<div class="content pb-20">
-  <FormData disabled={true} />
-  <ActivityRow item={firstSubmission} disabled={true} sodItemsDisabled={true} />
-  <AssessmentAndAction item={firstSubmission} disabled={true} />
+<div class="wrapper pb-20">
+  <div class="row">
+    <FormData disabled={true} />
+    <ActivityRow item={firstSubmission} disabled={true} sodItemsDisabled={true} />
+  </div>
+    <AssessmentAndAction item={firstSubmission} disabled={true} />
   {#each restOfSubmissions as $item}
     <SodScores item={$item} disabled={true} />
     <AssessmentAndAction item={$item} disabled={true} />

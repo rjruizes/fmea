@@ -19,7 +19,7 @@
 	let isRescoreDisabled = true
 	$: {
 		console.log($submission)
-		if($submission && $submission.actionTaken && $submission.actionTaken.length > 0) {
+		if($submission && $submission.actionsTaken && $submission.actionsTaken[0].length > 0) {
 			isRescoreDisabled = false
 		} else {
 			isRescoreDisabled = true
@@ -32,14 +32,17 @@
 </svelte:head>
 
 {#if $submission}
-	<div class="row">
+	<div class="wrapper">
 		<hr class="col-span-2">
 		<AssessmentAndAction />
 		<hr class="col-span-2">
 
 	</div>
 	<div class="flex flex-col items-center w-full space-y-2">
-		<Button class="max-w-xs" on:click={rescore} disabled={isRescoreDisabled} >Score Again</Button>
+		<!--  -->
+		{#if $submission.rpn > 9}
+			<Button class="max-w-xs" on:click={rescore} disabled={isRescoreDisabled} >Score Again</Button>
+		{/if}
 		<Button class="max-w-xs bg-gray-600 hover:bg-gray-500" on:click={goToExport} >Review</Button>
 		<ExportBtn />
 	</div>

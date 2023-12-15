@@ -79,7 +79,7 @@
   <label class="label" for="occurrence">
     <div class="flex flex-col">
       <div>
-        Occurrence
+        Occurrence of Failure
       </div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div on:click={() => occurrenceModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">

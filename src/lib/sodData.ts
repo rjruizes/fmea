@@ -4,25 +4,25 @@ export const severityItems = [
     "id": 5,
     "label": "5 — Catastrophic",
     "color": "bg-purple-400",
-    "description": "Failure results in unacceptable work product. Work product likely to cause significant negative impacts to lab's stakeholders and damage lab's reputation. Lab production, quality, staff safety or customer satisfaction may be severely compromised."
+    "description": "Failure results in unacceptable work product that is likely to cause significant negative impacts to lab's stakeholders and damage lab's reputation. Lab production, quality, staff safety or customer satisfaction may be severely compromised."
   },
   {
     "id": 4,
     "label": "4 — Critical",
     "color": "bg-red-400",
-    "description": "Failure has significant effect on work product. Work product likely to negativley impact lab's stakeholders and damage lab's reputation. Lab production, quality, staff safety or customer satisfaction may be considerably compromised."
+    "description": "Failure has significant effect on work product that is likely to negatively impact lab's stakeholders and damage lab's reputation. Lab production, quality, staff safety or customer satisfaction may be considerably compromised."
   },
   {
     "id": 3,
     "label": "3 — Moderate",
     "color": "bg-yellow-400",
-    "description": "Failure may have noticeable effect on work product. Work product may cause negative impacts to stakeholders and damage labs' reputation. Lab production, quality, staff safety or customer satisfaction may be compromised."
+    "description": "Failure may have noticeable effect on work product that may cause negative impacts to stakeholders and damage labs' reputation. Lab production, quality, staff safety or customer satisfaction may be compromised."
   },
   {
     "id": 2,
     "label": "2 — Minor",
     "color": "bg-yellow-400",
-    "description": "Failure may have a slight effect on work product. Work product not likely to impact stakeholders or lab's reputation. Lab operations and customer satisfaction not likely to be compromised."
+    "description": "Failure may have a slight effect on work product that is not likely to impact stakeholders or lab's reputation. Lab operations and customer satisfaction not likely to be compromised."
   },
   {
     "id": 1,
@@ -55,7 +55,7 @@ export const occurenceItems = [
     "id": 2,
     "label": "2 — Low",
     "color": "bg-yellow-400",
-    "description": "Failure is seldom, rare or remote"
+    "description": "Failure is seldom or rare"
   },
   {
     "id": 1,
@@ -70,25 +70,25 @@ export const detectionItems = [
     "id": 5,
     "label": "5 — Remote",
     "color": "bg-red-400",
-    "description": "Controls will not or can not detect the existence of a failure. No known controls available to detect failure mode."
+    "description": "Current controls will not or can not detect the existence of a failure. No known controls available to detect failure mode."
   },
   {
     "id": 4,
     "label": "4 — Low",
     "color": "bg-red-400",
-    "description": "Controls have a poor chance of detecting the existence of failure mode"
+    "description": "Current controls have a poor chance of detecting the existence of failure mode"
   },
   {
     "id": 3,
     "label": "3 — Moderate",
     "color": "bg-yellow-400",
-    "description": "Controls may detect the existence of a failure"
+    "description": "Current controls may detect the existence of a failure"
   },
   {
     "id": 2,
     "label": "2 — High",
     "color": "bg-yellow-400",
-    "description": "Controls have a good chance of detecting failure"
+    "description": "Current controls have a good chance of detecting failure"
   },
   {
     "id": 1,

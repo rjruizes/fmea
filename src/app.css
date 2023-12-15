@@ -41,6 +41,11 @@ body {
   width: 600px;
   align-items: center;
 }
+
+.wrapper {
+  width: 600px;
+}
+
 /* Media breakpoint for small screens */
 @media (max-width: 600px) {
   .content, .row {

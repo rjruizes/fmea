@@ -20,7 +20,8 @@ export type ActivityRowObj = {
   detection: number | null;
   rpn: number | null;
   carpar: string;
-  actionTaken: string
+  actionsTaken: string[]
+  addlComments: string;
 }
 
 // Define type for rows
@@ -37,7 +38,8 @@ export const rows:Rows = writable([{
   detection: null,
   rpn: null,
   carpar: "",
-  actionTaken: ""
+  actionsTaken: [""],
+  addlComments: "",
 }])
 
 // Define type for results
@@ -52,7 +54,8 @@ export type Submission = {
   detection: number;
   rpn: number;
   carpar: string;
-  actionTaken: string
+  actionsTaken: string[];
+  addlComments: string;
 }
 type SubmissionDict = Writable<{
   [key: number]: Submission

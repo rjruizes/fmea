@@ -12,9 +12,6 @@
 </select>
 <label class="label" for="qaManager">{s['qa.manager']}</label>
 <input id="qaManager" type="text" class="input input-bordered input-sm" bind:value={$formData.qaManager} disabled={disabled} />
-<label class="label" for="teamMembers">{s['team.members']}</label>
-<input id="teamMembers" type="text" class="input input-bordered input-sm" bind:value={$formData.teamMembers} disabled={disabled} />
-
 <label class="label" for="preparer">{s['prepared.by']}</label>
 <input id="preparer" type="text" class="input input-bordered input-sm" bind:value={$formData.preparer} disabled={disabled} />
 <label class="label" for="carNum">{s['car.num']}</label>
@@ -22,4 +19,14 @@
 <label class="label" for="fmeaNum">{s['fmea.num']}</label>
 <input id="fmeaNum" type="text" class="input input-bordered input-sm" bind:value={$formData.fmeaNum} disabled={disabled} />
 <label class="label" for="date">{s['date']}</label>
-<DateInput format="MM/dd/yyyy" closeOnSelection={true} bind:value={$formData.date} disabled={disabled} />
+<DateInput class='date-input-custom' format="MM/dd/yyyy" closeOnSelection={true} bind:value={$formData.date} disabled={disabled} />
+
+<style lang="postcss">
+  :global(.date-input-custom > input) {
+    @apply input input-bordered input-sm;
+  }
+  :global(.date-input-custom > input:disabled) {
+    color: var(--fallback-bc,oklch(var(--bc)/0.4)) !important;
+    background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity))) !important;
+  }
+</style>
