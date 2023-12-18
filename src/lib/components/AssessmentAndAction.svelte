@@ -7,9 +7,15 @@
 	import { calculateRiskAssessment } from "$lib/calculateRiskAssessment";
 	import Button from './Button.svelte';
 	import Textarea from './Textarea.svelte';
+	import InfoLink from './InfoLink.svelte';
+	import Modal from './Modal.svelte';
+	import XCloseButton from './XCloseButton.svelte';
+	import { DialogTitle } from '@rgossiaux/svelte-headlessui';
+	import RpnTable from './RpnTable.svelte';
 
   export let item: Submission|null = null;
   export let disabled: boolean = false;
+	let formulaModalIsOpen = false;
   let selectedCase: { label: string; color: string };
   $: submission = item || $submissions[$submissionCount - 1]
   $: if (submission) {
@@ -18,10 +24,33 @@
 </script>
 
 <h2 class="mt-0">{s["risk.assessment"]}</h2>
-<span class="label col-span-2">{s["rpn.score"]}</span>
-<h3 class="label my-0 leading-5">{submission.rpn}</h3>
-<RiskAssessmentBlurb selectedCase={selectedCase}
-/>
+<span>{s["rpn.score"]}</span>
+<h3 class="my-2 leading-5">{submission.rpn}</h3>
+<RiskAssessmentBlurb selectedCase={selectedCase} />
+{#if !item}
+  <InfoLink class='inline-block mb-8' click={() => formulaModalIsOpen = true} >Calculation Formula</InfoLink>
+{/if}
+<Modal isOpen={formulaModalIsOpen}>
+  <div>
+    <XCloseButton onclick={() => { formulaModalIsOpen = false}} />
+    <div class="mt-3 sm:mt-5">
+      <DialogTitle as="h3" class="text-base font-semibold leading-6 text-gray-900">Calculation Formula</DialogTitle>
+      <div class="-space-y-px rounded-md bg-white col-span-2 mt-2">
+        <p class="text-base pb-2">RPN Score = S x (O+D)</p>
+        <p class="text-base">Where:</p>
+        <p class="text-base">S = Severity (1-5)</p>
+        <p class="text-base">O = Occurence (1-5)</p>
+        <p class="text-base">D = Detection (1-5)</p>
+        
+        <p class="text-base pt-6 pb-5">The table below shows all possible RPN values that can be calculated from severity, occurence, and detection inputs. The color of the cell indicates the RPN level (Catastrophic, Critical, Moderate, Minor, or Negligible).</p>
+        <RpnTable />
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 sm:mt-6">
+    <Button on:click={() => { formulaModalIsOpen = false}}>Close</Button>
+  </div>
+</Modal>
 
 <!-- Hide Corrective Actions section for if RPN Score is green  -->
 {#if submission.rpn > 9}

@@ -7,6 +7,7 @@
 	import type { ActivityRowObj } from "$lib/store";
 	import { severityItems, occurenceItems, detectionItems } from "$lib/sodData";
 	import XCloseButton from "./XCloseButton.svelte";
+	import InfoLink from "./InfoLink.svelte";
 
 
   export let item: ActivityRowObj
@@ -31,10 +32,7 @@
       <div>
         Severity
       </div>
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div on:click={() => severityModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
-        More Info
-      </div>
+      <InfoLink click={() => severityModalIsOpen = true} >More Info</InfoLink>
     </div>
     
     <Modal isOpen={severityModalIsOpen}>
@@ -81,10 +79,7 @@
       <div>
         Occurrence of Failure
       </div>
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div on:click={() => occurrenceModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
-        More Info
-      </div>
+      <InfoLink click={() => occurrenceModalIsOpen = true} >More Info</InfoLink>
     </div>
 
     <Modal isOpen={occurrenceModalIsOpen}>
@@ -123,10 +118,7 @@
       <div>
         Detection
       </div>
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div on:click={() => detectionModalIsOpen = true} class="text-blue-600 opacity-95 uppercase text-xs hover:underline cursor-pointer">
-        More Info
-      </div>
+      <InfoLink click={() => detectionModalIsOpen = true} >More Info</InfoLink>
 
       <Modal isOpen={detectionModalIsOpen}>
         <div>
