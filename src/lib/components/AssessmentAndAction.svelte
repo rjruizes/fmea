@@ -17,6 +17,12 @@
   export let disabled: boolean = false;
 	let formulaModalIsOpen = false;
   let selectedCase: { label: string; color: string };
+
+  let previousScore = $submissions[$submissionCount - 2]?.rpn
+  let currentScore = $submissions[$submissionCount - 1]?.rpn
+  // Format as percentage
+  let reduction = (previousScore && currentScore) ? Math.round((previousScore - currentScore) / previousScore * 100) : 0
+
   $: submission = item || $submissions[$submissionCount - 1]
   $: if (submission) {
     selectedCase = calculateRiskAssessment(submission.rpn, submission.severity)
@@ -24,12 +30,20 @@
 </script>
 
 <h2 class="mt-0">{s["risk.assessment"]}</h2>
+<!-- RPN Score -->
 <span>{s["rpn.score"]}</span>
 <h3 class="my-2 leading-5">{submission.rpn}</h3>
+{#if $submissionCount > 1}
+  <span class="text-sm text-gray-500">{Math.abs(reduction)}% RPN {reduction < 0 ? "Increase" : "Reduction"} (Previous score: {$submissions[$submissionCount - 2].rpn})</span>
+{/if}
+
+<!-- Risk Assessment -->
 <RiskAssessmentBlurb selectedCase={selectedCase} />
 {#if !item}
   <InfoLink class='inline-block mb-8' click={() => formulaModalIsOpen = true} >Calculation Formula</InfoLink>
 {/if}
+
+<!-- Calculation Formula Modal -->
 <Modal isOpen={formulaModalIsOpen}>
   <div>
     <XCloseButton onclick={() => { formulaModalIsOpen = false}} />
@@ -52,12 +66,19 @@
   </div>
 </Modal>
 
-<!-- Hide Corrective Actions section for if RPN Score is green  -->
+<!-- Corrective Actions - Hidden if RPN Score is green  -->
 {#if submission.rpn > 9}
   <h3 class="mt-0">{s["corrective.actions"]}</h3>
-  {#each submission.actionsTaken as actionTaken, i}
-    <Textarea id="actionTaken-{i}" placeholder="Enter action taken here" disabled={disabled} bind:value={actionTaken} />
-  {/each}
+  {#if item}
+    {#each item.actionsTaken as actionTaken, i}
+      <Textarea id="actionTaken-{i}" placeholder="Enter action taken here" disabled={disabled} bind:value={actionTaken} />
+    {/each}
+  {:else}
+  <!-- To enable reactivity in results/+page.svelte, this variable must be used, not an intermediary -->
+    {#each $submissions[$submissionCount - 1].actionsTaken as actionTaken, i}
+      <Textarea id="actionTaken-{i}" placeholder="Enter action taken here" disabled={disabled} bind:value={actionTaken} />
+    {/each}
+  {/if}
 
   <!-- Add/Remove Buttons -->
   {#if !item}
@@ -96,6 +117,7 @@
     </div>
   {/if}
 
+  <!-- CAR/PAR -->
   <h3 class="w-full clear-both">{s["carpar"]}</h3>
   {#if item}
     <select name="carpar" id="carpar" bind:value={item.carpar} class="w-full select select-bordered select-sm" disabled={disabled}>
@@ -110,8 +132,8 @@
   {/if}
 {/if}
 
+<!-- Additional Comments -->
 <h3>{s["addl.comments"]}</h3>
-<!-- <label class="label col-span-2" for="addlComments"></label> -->
 {#if item}
   <textarea id="addlComments"
     bind:value={item.addlComments}

@@ -8,7 +8,7 @@ export let placeholder: string = "";
 
 <textarea id={id}
   placeholder={placeholder}
-  bind:value={value}
+  bind:value
   rows="3"
   class="w-full my-1 textarea textarea-bordered textarea-sm text-black leading-5"
   disabled={disabled}

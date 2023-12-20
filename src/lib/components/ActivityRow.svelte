@@ -30,11 +30,11 @@
 
   <label class="label self-start" for="effect">Potential Effect of Failure</label>
   <Textarea id="effect" placeholder="Enter potential effect of failure here" disabled={disabled} bind:value={item.effect} />
-  
+
   <label class="label" for="severity">
     <div class="flex flex-col">
       <div>
-        Severity
+        Severity of Condition
       </div>
       <InfoLink click={() => severityModalIsOpen = true} >More Info</InfoLink>
     </div>
@@ -69,14 +69,7 @@
 
   <SelectBox bind:selectedId={item.severity} items={severityItems} disabled={sodItemsDisabled} />
 
-  <!-- <select name="severity" id="severity" class="select select-bordered select-sm" bind:value={item.severity}>
-    <option value=5>5</option>
-    <option value=4>4. Critical</option>
-    <option value=3>3</option>
-    <option value=2>2</option>
-    <option value=1>1</option>
-  </select> -->
-  <label class="label" for="cause">Likely cause of Failure</label>
+  <label class="label" for="cause">Likely Cause of Failure</label>
   <input id="cause" type="text" class="input input-bordered input-sm" bind:value={item.cause} disabled={disabled} />
   <label class="label" for="occurrence">
     <div class="flex flex-col">
@@ -120,7 +113,7 @@
   <label class="label" for="detection">
     <div class="flex flex-col">
       <div>
-        Detection
+        Probability of Detection
       </div>
       <InfoLink click={() => detectionModalIsOpen = true} >More Info</InfoLink>
 

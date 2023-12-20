@@ -18,8 +18,7 @@
 	}
 	let isRescoreDisabled = true
 	$: {
-		console.log($submission)
-		if($submission && $submission.actionsTaken && $submission.actionsTaken[0].length > 0) {
+		if($submission && $submission.actionsTaken && $submission.actionsTaken[0]?.length > 0) {
 			isRescoreDisabled = false
 		} else {
 			isRescoreDisabled = true
