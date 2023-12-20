@@ -1,14 +1,16 @@
 <script lang="ts">
 
+export let id: string = "";
 export let disabled: boolean = false;
-export let actionTaken: string = "";
+export let value: string = "";
+export let placeholder: string = "";
 </script>
 
-<textarea id="actionTaken"
-  placeholder="Enter action taken"
-  bind:value={actionTaken}
+<textarea id={id}
+  placeholder={placeholder}
+  bind:value={value}
   rows="3"
-  class="w-full textarea textarea-bordered textarea-sm leading-5"
+  class="w-full my-1 textarea textarea-bordered textarea-sm leading-5"
   disabled={disabled}
   autocomplete="off"
 />

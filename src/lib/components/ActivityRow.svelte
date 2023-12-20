@@ -8,6 +8,7 @@
 	import { severityItems, occurenceItems, detectionItems } from "$lib/sodData";
 	import XCloseButton from "./XCloseButton.svelte";
 	import InfoLink from "./InfoLink.svelte";
+	import Textarea from "./Textarea.svelte";
 
 
   export let item: ActivityRowObj
@@ -21,12 +22,15 @@
 
 <div class="divider col-span-2"></div>
 <div class="row">
-  <label class="label" for="process">Process or Activity</label>
-  <input id="process" type="text" class="input input-bordered input-sm" bind:value={item.process} disabled={disabled} />
-  <label class="label" for="failure">Failure or Potential Failure</label>
-  <input id="failure" type="text" class="input input-bordered input-sm" bind:value={item.failure} disabled={disabled} />
-  <label class="label" for="effect">Potential Effect of Failure</label>
-  <input id="effect" type="text" class="input input-bordered input-sm" bind:value={item.effect} disabled={disabled} />
+  <label class="label self-start" for="process">Process or Activity</label>
+  <Textarea id="process" placeholder="Enter process or activity here" disabled={disabled} bind:value={item.process} />
+
+  <label class="label self-start" for="failure">Failure or Potential Failure</label>
+  <Textarea id="failure" placeholder="Enter failure or potential failure here" disabled={disabled} bind:value={item.failure} />
+
+  <label class="label self-start" for="effect">Potential Effect of Failure</label>
+  <Textarea id="effect" placeholder="Enter potential effect of failure here" disabled={disabled} bind:value={item.effect} />
+  
   <label class="label" for="severity">
     <div class="flex flex-col">
       <div>

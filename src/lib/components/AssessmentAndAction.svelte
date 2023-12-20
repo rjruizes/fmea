@@ -55,8 +55,8 @@
 <!-- Hide Corrective Actions section for if RPN Score is green  -->
 {#if submission.rpn > 9}
   <h3 class="mt-0">{s["corrective.actions"]}</h3>
-  {#each submission.actionsTaken as actionTaken}
-    <Textarea disabled={disabled} bind:actionTaken={actionTaken} />
+  {#each submission.actionsTaken as actionTaken, i}
+    <Textarea id="actionTaken-{i}" placeholder="Enter action taken here" disabled={disabled} bind:value={actionTaken} />
   {/each}
 
   <!-- Add/Remove Buttons -->

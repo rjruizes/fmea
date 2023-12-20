@@ -43,7 +43,7 @@ body {
 }
 
 .wrapper {
-  width: 600px;
+  max-width: 600px;
 }
 
 /* Media breakpoint for small screens */
