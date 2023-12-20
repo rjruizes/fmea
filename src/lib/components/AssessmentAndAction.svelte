@@ -35,7 +35,7 @@
 <!-- RPN Score -->
 <span>{s["rpn.score"]}</span>
 <h3 class="my-2 leading-5">{submission.rpn}</h3>
-{#if $submissionCount > 1 && itemIndex !== 0}
+{#if itemIndex !== null ? itemIndex > 0 : $submissionCount > 1}
   <span class="text-sm text-gray-500">{Math.abs(reduction)}% RPN {reduction < 0 ? "Increase" : "Reduction"} (Previous score: {$submissions[currentIndex - 1].rpn})</span>
 {/if}
 
