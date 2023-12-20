@@ -13,14 +13,15 @@
 	import { DialogTitle } from '@rgossiaux/svelte-headlessui';
 	import RpnTable from './RpnTable.svelte';
 
-  export let isFirst: boolean = false;
+  export let itemIndex: number|null = null;
   export let item: Submission|null = null;
   export let disabled: boolean = false;
 	let formulaModalIsOpen = false;
   let selectedCase: { label: string; color: string };
 
-  let previousScore = $submissions[$submissionCount - 2]?.rpn
-  let currentScore = $submissions[$submissionCount - 1]?.rpn
+  let currentIndex = itemIndex || $submissionCount - 1
+  let previousScore = $submissions[currentIndex - 1]?.rpn
+  let currentScore = $submissions[currentIndex]?.rpn
   // Format as percentage
   let reduction = (previousScore && currentScore) ? Math.round((previousScore - currentScore) / previousScore * 100) : 0
 
@@ -34,8 +35,8 @@
 <!-- RPN Score -->
 <span>{s["rpn.score"]}</span>
 <h3 class="my-2 leading-5">{submission.rpn}</h3>
-{#if $submissionCount > 1 && !isFirst}
-  <span class="text-sm text-gray-500">{Math.abs(reduction)}% RPN {reduction < 0 ? "Increase" : "Reduction"} (Previous score: {$submissions[$submissionCount - 2].rpn})</span>
+{#if $submissionCount > 1 && itemIndex !== 0}
+  <span class="text-sm text-gray-500">{Math.abs(reduction)}% RPN {reduction < 0 ? "Increase" : "Reduction"} (Previous score: {$submissions[currentIndex - 1].rpn})</span>
 {/if}
 
 <!-- Risk Assessment -->

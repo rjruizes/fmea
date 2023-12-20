@@ -15,10 +15,10 @@
     <FormData disabled={true} />
     <ActivityRow item={firstSubmission} disabled={true} sodItemsDisabled={true} />
   </div>
-    <AssessmentAndAction item={firstSubmission} disabled={true} isFirst={true} />
-  {#each restOfSubmissions as $item}
+    <AssessmentAndAction item={firstSubmission} disabled={true} itemIndex={0} />
+  {#each restOfSubmissions as $item, index}
     <SodScores item={$item} disabled={true} />
-    <AssessmentAndAction item={$item} disabled={true} />
+    <AssessmentAndAction item={$item} disabled={true} itemIndex={index+1} />
   {/each}
 </div>
 
