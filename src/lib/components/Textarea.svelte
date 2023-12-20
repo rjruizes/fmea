@@ -10,7 +10,7 @@ export let placeholder: string = "";
   placeholder={placeholder}
   bind:value={value}
   rows="3"
-  class="w-full my-1 textarea textarea-bordered textarea-sm leading-5"
+  class="w-full my-1 textarea textarea-bordered textarea-sm text-black leading-5"
   disabled={disabled}
   autocomplete="off"
 />
