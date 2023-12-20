@@ -15,7 +15,7 @@
     <FormData disabled={true} />
     <ActivityRow item={firstSubmission} disabled={true} sodItemsDisabled={true} />
   </div>
-    <AssessmentAndAction item={firstSubmission} disabled={true} />
+    <AssessmentAndAction item={firstSubmission} disabled={true} isFirst={true} />
   {#each restOfSubmissions as $item}
     <SodScores item={$item} disabled={true} />
     <AssessmentAndAction item={$item} disabled={true} />
