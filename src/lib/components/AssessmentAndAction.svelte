@@ -12,6 +12,7 @@
 	import XCloseButton from './XCloseButton.svelte';
 	import { DialogTitle } from '@rgossiaux/svelte-headlessui';
 	import RpnTable from './RpnTable.svelte';
+	import { calculateRpnPercentage, formatRpnPercentageMessage } from '$lib/calculateRpnPercentage';
 
   export let itemIndex: number|null = null;
   export let item: Submission|null = null;
@@ -23,7 +24,7 @@
   let previousScore = $submissions[currentIndex - 1]?.rpn
   let currentScore = $submissions[currentIndex]?.rpn
   // Format as percentage
-  let reduction = (previousScore && currentScore) ? Math.round((previousScore - currentScore) / previousScore * 100) : 0
+  let reduction = (previousScore && currentScore) ? calculateRpnPercentage(previousScore, currentScore) : 0
 
   $: submission = item || $submissions[$submissionCount - 1]
   $: if (submission) {
@@ -36,7 +37,7 @@
 <span>{s["rpn.score"]}</span>
 <h3 class="my-2 leading-5">{submission.rpn}</h3>
 {#if itemIndex !== null ? itemIndex > 0 : $submissionCount > 1}
-  <span class="text-sm text-gray-500">{Math.abs(reduction)}% RPN {reduction < 0 ? "Increase" : "Reduction"} (Previous score: {$submissions[currentIndex - 1].rpn})</span>
+  <span class="text-sm text-gray-500">{Math.abs(reduction)}% {formatRpnPercentageMessage(reduction)}  (Previous score: {$submissions[currentIndex - 1].rpn})</span>
 {/if}
 
 <!-- Risk Assessment -->

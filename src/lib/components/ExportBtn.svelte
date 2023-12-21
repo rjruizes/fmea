@@ -6,6 +6,7 @@
 	import s from './strings';
 	import { calculateRiskAssessment } from '$lib/calculateRiskAssessment';
 	import { Arial } from '$lib/fonts/Arial';
+	import { calculateRpnPercentage, formatRpnPercentageMessage } from '$lib/calculateRpnPercentage';
 
   function exportPdf() {
     const doc = new jsPDF()
@@ -85,6 +86,7 @@
     // Corrective actions
     finalY = (doc as any).lastAutoTable.finalY
     doc.text(s['corrective.actions'], 14, finalY + 15)
+    const actionsTaken = firstSubmission.actionsTaken.map((actionTaken, i) => [`${s['action.taken']} #${i+1}`, actionTaken])
     autoTable(doc, {
       theme: 'grid',
       startY: finalY + 20,
@@ -96,7 +98,7 @@
         fontStyle: 'normal',
       },
       body: [
-        [s['action.taken'], firstSubmission.actionTaken],
+        ...actionsTaken,
         [s['carpar'], firstSubmission.carpar],
       ],
     })
@@ -123,6 +125,8 @@
         ],
       })
 
+      console.log($submissionsList, i)
+      const rpnPercentageChange = calculateRpnPercentage($submissionsList[i].rpn, submission.rpn)
       finalY = (doc as any).lastAutoTable.finalY
       doc.text(s["risk.assessment"], 14, finalY + 15)
       autoTable(doc, {
@@ -137,27 +141,31 @@
         },
         body: [
           [s['rpn.score'], String(submission.rpn)],
+          [formatRpnPercentageMessage(rpnPercentageChange), String(rpnPercentageChange)+'%'],
           [s["rpn.description"], calculateRiskAssessment(submission.rpn, submission.severity).label],
         ],
       })
 
-      finalY = (doc as any).lastAutoTable.finalY
-      doc.text(s["corrective.actions"], 14, finalY + 15)
-      autoTable(doc, {
-        theme: 'grid',
-        startY: finalY + 20,
-        columnStyles: {
-          0: {cellWidth: FIRST_COL_WIDTH},
-        },
-        styles: {
-          font: 'arial',
-          fontStyle: 'normal',
-        },
-        body: [
-          [s['action.taken'], submission.actionTaken],
-          [s['carpar'], submission.carpar],
-        ],
-      })
+      if (submission.rpn > 9) {
+        finalY = (doc as any).lastAutoTable.finalY
+        doc.text(s['corrective.actions'], 14, finalY + 15)
+        const actionsTaken = submission.actionsTaken.map((actionTaken, i) => [`${s['action.taken']} #${i+1}`, actionTaken])
+        autoTable(doc, {
+          theme: 'grid',
+          startY: finalY + 20,
+          columnStyles: {
+            0: {cellWidth: FIRST_COL_WIDTH},
+          },
+          styles: {
+            font: 'arial',
+            fontStyle: 'normal',
+          },
+          body: [
+            ...actionsTaken,
+            [s['carpar'], submission.carpar],
+          ],
+        })
+      }
     })
 
     doc.save('fmea.pdf')
