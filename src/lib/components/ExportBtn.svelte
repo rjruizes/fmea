@@ -147,9 +147,10 @@
       })
 
       if (submission.rpn > 9) {
+        const actionsTaken = submission.actionsTaken.map((actionTaken, i) => [`${s['action.taken']} #${i+1}`, actionTaken])
+
         finalY = (doc as any).lastAutoTable.finalY
         doc.text(s['corrective.actions'], 14, finalY + 15)
-        const actionsTaken = submission.actionsTaken.map((actionTaken, i) => [`${s['action.taken']} #${i+1}`, actionTaken])
         autoTable(doc, {
           theme: 'grid',
           startY: finalY + 20,
@@ -166,6 +167,94 @@
           ],
         })
       }
+
+      // Additional comments
+      if (submission.addlComments) {
+        finalY = (doc as any).lastAutoTable.finalY
+        // doc.text(s['addl.comments'], 14, finalY + 15)
+        autoTable(doc, {
+          theme: 'grid',
+          startY: finalY + 8,
+          columnStyles: {
+            0: {cellWidth: FIRST_COL_WIDTH},
+          },
+          styles: {
+            font: 'arial',
+            fontStyle: 'normal',
+          },
+          body: [
+            [s['addl.comments'], submission.addlComments],
+          ],
+        })
+      }
+    })
+
+    // Signature line and date
+    finalY = (doc as any).lastAutoTable.finalY
+    // doc.text(s['signature.line'], 14, finalY + 15)
+    autoTable(doc, {
+      theme: 'grid',
+      startY: finalY + 20,
+      // columnStyles: {
+      //   0: {cellWidth: FIRST_COL_WIDTH},
+      // },
+      styles: {
+        font: 'arial',
+        fontStyle: 'normal',
+      },
+      body: [
+        [{
+          content: 'Signature',
+          styles: {
+            lineColor: 'black',
+            lineWidth: {
+              top: 0.25,
+            },
+          },
+        },
+        {
+          content: '',
+          styles: {
+            lineWidth: {},
+          },
+        },
+        {
+          content: s['date'],
+          styles: {
+            lineColor: 'black',
+            lineWidth: {
+              top: 0.25,
+            },
+          },
+        }],
+        [
+          { content: '', styles: { lineWidth: {} }},
+          { content: '', styles: { lineWidth: {} }},
+          { content: '', styles: { lineWidth: {} }},
+        ],
+        [{
+          content: 'Signature',
+          styles: {
+            lineColor: 'black',
+            lineWidth: {
+              top: 0.25,
+            },
+          },
+        },
+        {
+          content: '',
+          styles: { lineWidth: {}, },
+        },
+        {
+          content: s['date'],
+          styles: {
+            lineColor: 'black',
+            lineWidth: {
+              top: 0.25,
+            },
+          },
+        }],
+      ],
     })
 
     doc.save('fmea.pdf')
