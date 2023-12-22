@@ -7,6 +7,8 @@
 	import { calculateRiskAssessment } from '$lib/calculateRiskAssessment';
 	import { Arial } from '$lib/fonts/Arial';
 	import { calculateRpnPercentage, formatRpnPercentageMessage } from '$lib/calculateRpnPercentage';
+	import TableFormCell from './TableFormCell.svelte';
+  // import * as TableToExcel from "@linways/table-to-excel";
 
   function exportPdf() {
     const doc = new jsPDF()
@@ -259,6 +261,196 @@
 
     doc.save('fmea.pdf')
   }
+
+  function exportCsv() {
+    window['TableToExcel'].convert(document.getElementById("table1"))
+  }
 </script>
 
+<svelte:head>
+  <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel/dist/tableToExcel.js"></script>
+</svelte:head>
+<div class="hidden">
+  <table id="table1" data-cols-width="26,16,8,26">
+    <tr data-height='33'>
+      <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+        Forensic Science FMEA
+      </td>
+    </tr>
+    <tr data-height='20'>
+      <TableFormCell>{s['risk.to.be.evaluated']}</TableFormCell>
+      <TableFormCell colspan={3}>{$formData.riskType === 'nonConformance' ? s['non.conformance'] : s['area.of.concern']}</TableFormCell>
+    </tr>
+    <tr data-height='20'>
+      <TableFormCell>{s['qa.manager']}</TableFormCell>
+      <TableFormCell colspan={3}>{$formData.qaManager}</TableFormCell>
+    </tr>
+    <tr data-height='20'>
+      <TableFormCell>{s['prepared.by']}</TableFormCell>
+      <TableFormCell colspan={3}>{$formData.preparer}</TableFormCell>
+    </tr>
+    <tr data-height='20'>
+      <TableFormCell>{s['car.num']}</TableFormCell>
+      <TableFormCell colspan={3}>{$formData.carNum}</TableFormCell>
+    </tr>
+    <tr data-height='20'>
+      <TableFormCell>{s['fmea.num']}</TableFormCell>
+      <TableFormCell colspan={3}>{$formData.fmeaNum}</TableFormCell>
+    </tr>
+    <tr data-height='20'>
+      <TableFormCell>{s['date']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($formData.date)}</TableFormCell>
+    </tr>
+    <tr data-height='26'>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr data-height="20">
+      <!-- First submission -->
+      <TableFormCell>{s['process']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].process)}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['failure']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].failure)}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['effect']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].effect)}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['severity']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].severity)}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['cause']}</TableFormCell>
+      <TableFormCell colspan={3}>{$submissionsList[0].cause}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['occurrence']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].occurrence)}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['controls']}</TableFormCell>
+      <TableFormCell colspan={3}>{$submissionsList[0].controls}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s['detection']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].detection)}</TableFormCell>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr data-height='33'>
+      <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+        Risk Assessment
+      </td>
+    </tr>
+    <tr data-height="20">
+      <!-- Risk assessment -->
+      <TableFormCell>{s['rpn.score']}</TableFormCell>
+      <TableFormCell colspan={3}>{String($submissionsList[0].rpn)}</TableFormCell>
+    </tr>
+    <tr data-height="20">
+      <TableFormCell>{s["rpn.description"]}</TableFormCell>
+      <TableFormCell colspan={3}>{calculateRiskAssessment($submissionsList[0].rpn, $submissionsList[0].severity).label}</TableFormCell>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    {#if $submissionsList[0].rpn > 9}
+      <tr data-height='33'>
+        <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+          Corrective Actions
+        </td>
+      </tr>
+      {#each $submissionsList[0].actionsTaken as actionTaken, i}
+        <tr data-height="20">
+          <!-- Corrective actions -->
+          <TableFormCell>{s['action.taken']} #{i+1}</TableFormCell>
+          <TableFormCell colspan={3}>{actionTaken}</TableFormCell>
+        </tr>
+      {/each}
+      <tr data-height="20">
+        <TableFormCell>{s['carpar']}</TableFormCell>
+        <TableFormCell colspan={3}>{$submissionsList[0].carpar}</TableFormCell>
+      </tr>
+    {/if}
+
+    {#each $submissionsList.slice(1) as submission, i}
+      <tr data-height='33'>
+        <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+          Rescore
+        </td>
+      </tr>
+      <tr data-height="20">
+        <!-- Rescore -->
+        <TableFormCell>{s['severity']}</TableFormCell>
+        <TableFormCell colspan={3}>{String(submission.severity)}</TableFormCell>
+      </tr>
+      <tr data-height="20">
+        <TableFormCell>{s['occurrence']}</TableFormCell>
+        <TableFormCell colspan={3}>{String(submission.occurrence)}</TableFormCell>
+      </tr>
+      <tr data-height="20">
+        <TableFormCell>{s['detection']}</TableFormCell>
+        <TableFormCell colspan={3}>{String(submission.detection)}</TableFormCell>
+      </tr>
+      <tr data-height='33'>
+        <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+          Risk Assessment
+        </td>
+      </tr>
+      <tr data-height="20">
+        <!-- Risk assessment -->
+        <TableFormCell>{s['rpn.score']}</TableFormCell>
+        <TableFormCell colspan={3}>{String(submission.rpn)}</TableFormCell>
+      </tr>
+      <tr data-height="20">
+        <TableFormCell>{s["rpn.description"]}</TableFormCell>
+        <TableFormCell colspan={3}>{calculateRiskAssessment(submission.rpn, submission.severity).label}</TableFormCell>
+      </tr>
+      {#if submission.rpn > 9}
+        <tr data-height='33'>
+          <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+            Corrective Actions
+          </td>
+        </tr>
+        {#each submission.actionsTaken as actionTaken, i}
+          <tr data-height="20">
+            <!-- Corrective actions -->
+            <TableFormCell>{s['action.taken']} #{i+1}</TableFormCell>
+            <TableFormCell colspan={3}>{actionTaken}</TableFormCell>
+          </tr>
+        {/each}
+        <tr data-height="20">
+          <TableFormCell>{s['carpar']}</TableFormCell>
+          <TableFormCell colspan={3}>{submission.carpar}</TableFormCell>
+        </tr>
+      {/if}
+
+      {#if submission.addlComments}
+        <tr data-height='33'>
+          <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
+            Additional Comments
+          </td>
+        </tr>
+        <tr data-height="20">
+          <!-- Additional comments -->
+          <TableFormCell colspan={4}>{submission.addlComments}</TableFormCell>
+        </tr>
+      {/if}
+    {/each}
+  </table>
+</div>
+
 <Button class="max-w-xs bg-gray-600 hover:bg-gray-500" on:click={exportPdf} >Export PDF</Button>
+<Button class="max-w-xs bg-gray-600 hover:bg-gray-500" on:click={exportCsv} >Export Excel</Button>
