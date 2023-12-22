@@ -76,7 +76,7 @@ export const detectionItems = [
     "id": 4,
     "label": "4 — Low",
     "color": "bg-red-400",
-    "description": "Current controls have a poor chance of detecting the existence of failure mode"
+    "description": "Current controls have a poor chance of detecting the existence of a failure"
   },
   {
     "id": 3,
@@ -88,12 +88,12 @@ export const detectionItems = [
     "id": 2,
     "label": "2 — High",
     "color": "bg-yellow-400",
-    "description": "Current controls have a good chance of detecting failure"
+    "description": "Current controls have a good chance of detecting the existence of a failure"
   },
   {
     "id": 1,
     "label": "1 — Very High",
     "color": "bg-green-400",
-    "description": "Current controls almost certain to detect the failure"
+    "description": "Current controls almost certain to detect the existence of a failure"
   }
 ]
