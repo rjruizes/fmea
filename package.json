@@ -43,7 +43,6 @@
 	"dependencies": {
 		"@rgossiaux/svelte-headlessui": "^1.0.2",
 		"@tailwindcss/line-clamp": "^0.4.4",
-		"@vercel/analytics": "^1.0.1",
 		"daisyui": "^4.4.20",
 		"jspdf": "^2.5.1",
 		"jspdf-autotable": "^3.5.31",

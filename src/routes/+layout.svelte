@@ -1,14 +1,8 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
 	import FormDemoToggler from "$lib/components/FormDemoToggler.svelte";
 	import './styles.css';
   import "../app.css";
 	import { submissionCount } from '$lib/store';
-	
-	import { dev } from '$app/environment';
-	import { inject } from '@vercel/analytics';
-	
-	inject({ mode: dev ? 'development' : 'production' });
 
   // onMount(() => {
   //   console.log('MOUNT', window);
