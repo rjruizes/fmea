@@ -37,31 +37,31 @@ export const occurenceItems = [
     "id": 5,
     "label": "5 — Very High",
     "color": "bg-red-400",
-    "description": "Failure is frequent, very likely or recurring"
+    "description": "Failure is frequent, very likely or recurring."
   },
   {
     "id": 4,
     "label": "4 — High",
     "color": "bg-red-400",
-    "description": "Failure is repeated, probable or likely"
+    "description": "Failure is repeated, probable or likely."
   },
   {
     "id": 3,
     "label": "3 — Moderate",
     "color": "bg-yellow-400",
-    "description": "Failure is occasional or possible"
+    "description": "Failure is occasional or possible."
   },
   {
     "id": 2,
     "label": "2 — Low",
     "color": "bg-yellow-400",
-    "description": "Failure is seldom or rare"
+    "description": "Failure is seldom or rare."
   },
   {
     "id": 1,
     "label": "1 — Remote",
     "color": "bg-green-400",
-    "description": "Failure is not likely or probable"
+    "description": "Failure is not likely or probable."
   }
 ]
 
@@ -70,30 +70,30 @@ export const detectionItems = [
     "id": 5,
     "label": "5 — Remote",
     "color": "bg-red-400",
-    "description": "Current controls will not or can not detect the existence of a failure. No known controls available to detect failure mode."
+    "description": "Current controls will not or can not detect the existence of a failure. No known controls available to detect a failure."
   },
   {
     "id": 4,
     "label": "4 — Low",
     "color": "bg-red-400",
-    "description": "Current controls have a poor chance of detecting the existence of a failure"
+    "description": "Current controls have a poor chance of detecting the existence of a failure."
   },
   {
     "id": 3,
     "label": "3 — Moderate",
     "color": "bg-yellow-400",
-    "description": "Current controls may detect the existence of a failure"
+    "description": "Current controls may detect the existence of a failure."
   },
   {
     "id": 2,
     "label": "2 — High",
     "color": "bg-yellow-400",
-    "description": "Current controls have a good chance of detecting the existence of a failure"
+    "description": "Current controls have a good chance of detecting the existence of a failure."
   },
   {
     "id": 1,
     "label": "1 — Very High",
     "color": "bg-green-400",
-    "description": "Current controls almost certain to detect the existence of a failure"
+    "description": "Current controls are almost certain to detect the existence of a failure."
   }
 ]

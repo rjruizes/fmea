@@ -45,7 +45,7 @@
 	influence of failures or potential failures in processes. This application automates FMEA by evaluating the level of risk associated with an area of concern or non-conformance in forensic laboratory processes.
 	The application calculates a Risk Priority Number (RPN) that shows the level of risk associated with a
 	failure and the action required to mitigate that risk. The RPN is derived from a severity, occurrence, and
-	detection (SOD) matrix, which has been customized for forensic science service providers. The application provides an option to export to Excel to save the data and/or export to PDF to retain a record of the risk assessment. Click (link) for instructions on how to complete template.	
+	detection (SOD) matrix, which has been customized for forensic science service providers. The application provides an option to export to Excel to save the data and/or export to PDF to retain a record of the risk assessment.
 </p>
 
 <form class="content">
