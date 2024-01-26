@@ -369,7 +369,7 @@
     {#if $submissionsList[0].rpn > 9}
       <tr data-height='33'>
         <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
-          Corrective Actions
+          {s['corrective.actions']}
         </td>
       </tr>
       {#each $submissionsList[0].actionsTaken as actionTaken, i}
@@ -421,7 +421,7 @@
       {#if submission.rpn > 9}
         <tr data-height='33'>
           <td colspan="4" data-f-sz="14" data-f-bold="true" data-a-v='middle'>
-            Corrective Actions
+            {s['corrective.actions']}
           </td>
         </tr>
         {#each submission.actionsTaken as actionTaken, i}

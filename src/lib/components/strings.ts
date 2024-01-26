@@ -24,7 +24,7 @@ const strings = {
   "risk.assessment": "Risk Assessment",
   "rpn.score": "RPN Score",
   "rpn.description": "RPN Description",
-  "corrective.actions": "Corrective Action(s)",
+  "corrective.actions": "Proposed Action(s)",
   "rescore": "Rescore",
 }
 export default strings
