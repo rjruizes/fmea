@@ -34,16 +34,7 @@
 
 <div class="app flex min-h-screen h-full flex-col">
 	<header>
-		<div class="bg-[#333e47] h-14 hidden md:block"></div>
-		<div class="w-full py-7 px-4 max-w-7xl mx-auto">
-			<img class="h-24" src="/ftcoe_logo.png" alt="FTCOE Logo" />
-		</div>
-		<div class="bg-[#333e47] py-20 px-4 text-white font-bold uppercase text-4xl">
-			<FormDemoToggler />
-			<div class="max-w-6xl mx-auto">
-				Forensic Science Failure Mode and Effects Analysis (FMEA) Application
-			</div>
-		</div>
+		<FormDemoToggler />
 		<div class="py-4 px-2 max-w-6xl mx-auto">
 		</div>
 	</header>

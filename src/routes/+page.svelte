@@ -39,15 +39,6 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-
-<p class="wrapper px-3 sm:px-0 -mt-3 mb-10">
-	Failure Mode and Effects Analysis (FMEA) is a risk management tool that identifies and quantifies the
-	influence of failures or potential failures in processes. This application automates FMEA by evaluating the level of risk associated with an area of concern or non-conformance in forensic laboratory processes.
-	The application calculates a Risk Priority Number (RPN) that shows the level of risk associated with a
-	failure and the action required to mitigate that risk. The RPN is derived from a severity, occurrence, and
-	detection (SOD) matrix, which has been customized for forensic science service providers. The application provides an option to export to Excel to save the data and/or export to PDF to retain a record of the risk assessment.
-</p>
-
 <form class="content">
 	<FormData disabled={nonSodItemsDisabled} />
 
