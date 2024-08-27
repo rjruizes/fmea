@@ -102,6 +102,7 @@
       body: [
         ...actionsTaken,
         [s['carpar'], firstSubmission.carpar],
+        [s['addl.comments'], firstSubmission.addlComments],
       ],
     })
 
@@ -383,6 +384,13 @@
         <TableFormCell>{s['carpar']}</TableFormCell>
         <TableFormCell colspan={3}>{$submissionsList[0].carpar}</TableFormCell>
       </tr>
+
+      {#if $submissionsList[0].addlComments}
+        <tr>
+          <TableFormCell>{s['addl.comments']}</TableFormCell>
+          <TableFormCell colspan={3}>{$submissionsList[0].addlComments}</TableFormCell>
+        </tr>
+      {/if}
     {/if}
 
     {#each $submissionsList.slice(1) as submission, i}

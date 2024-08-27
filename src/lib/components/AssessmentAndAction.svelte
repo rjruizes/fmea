@@ -138,19 +138,13 @@
 <!-- Additional Comments -->
 <h3>{s["addl.comments"]}</h3>
 {#if item}
-  <textarea id="addlComments"
+  <Textarea id="addlComments"
     bind:value={item.addlComments}
-    class="w-full textarea textarea-bordered textarea-sm leading-5"
-    rows="3"
     disabled={disabled}
-    autocomplete="off"
   />
 {:else}
-  <textarea id="addlComments"
+  <Textarea id="addlComments"
     bind:value={$submissions[$submissionCount - 1].addlComments}
-    class="w-full textarea textarea-bordered textarea-sm leading-5"
-    rows="3"
     disabled={disabled}
-    autocomplete="off"
   />
 {/if}
